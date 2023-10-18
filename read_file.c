@@ -9,7 +9,7 @@ void read_file(FILE *fd)
 	char *buf = NULL;
 	size_t len = 0;
 
-	for (line_num = 1; _getline(&buf, &len, fd) != -1; line_num++)
+	for (line_num = 1; getline(&buf, &len, fd) != -1; line_num++)
 	{
 		format = parse_line(buf, line_num, format);
 	}
