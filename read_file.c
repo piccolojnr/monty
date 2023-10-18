@@ -46,7 +46,8 @@ int parse_line(char *buf, int line_num, int format)
 		return (format);
 	}
 	index = strlen(opcode) - 1;
-
+	if ('0' + opcode[index] == 61)
+		opcode[index] = '\0';
 	if (opcode == NULL || opcode[0] == '\0' || opcode[0] == '#')
 		return (format);
 	value = strtok(NULL, delim);
