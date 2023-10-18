@@ -5,7 +5,7 @@
  */
 void read_file(FILE *fd)
 {
-	int line_num, format = 0;
+	int line_num, format = 1;
 	char *buf = NULL;
 	size_t len = 0;
 
