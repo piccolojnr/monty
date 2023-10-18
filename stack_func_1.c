@@ -38,13 +38,11 @@ void print_stack(stack_t **stack, unsigned int line_num)
 		exit(EXIT_FAILURE);
 
 	tmp = *stack;
-	printf("+++++++++++++++++++++\n");
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
 	}
-	printf("+++++++++++++++++++++\n");
 }
 /**
  * print_top - prints the top of the stack

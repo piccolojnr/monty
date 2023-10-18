@@ -27,8 +27,5 @@ int main(int argc, char *argv[])
 	read_file(fd);
 
 	fclose(fd);
-
-	printf("executed successfully\n");
-	free_stack();
 	return (0);
 }
