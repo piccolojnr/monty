@@ -7,22 +7,22 @@
  */
 void add_to_stack(stack_t **stack, unsigned int line_num)
 {
-    stack_t *tmp;
+	stack_t *tmp;
 
-    (void)line_num;
+	(void)line_num;
 
-    if (stack == NULL || *stack == NULL)
-        exit(EXIT_FAILURE);
+	if (stack == NULL || *stack == NULL)
+		exit(EXIT_FAILURE);
 
-    if (head == NULL)
-    {
-        head = *stack;
-        return;
-    }
-    tmp = head;
-    head = *stack;
-    head->next = tmp;
-    tmp->prev = head;
+	if (head == NULL)
+	{
+		head = *stack;
+		return;
+	}
+	tmp = head;
+	head = *stack;
+	head->next = tmp;
+	tmp->prev = head;
 }
 /**
  * print_stack - prints the stack
@@ -31,18 +31,20 @@ void add_to_stack(stack_t **stack, unsigned int line_num)
  */
 void print_stack(stack_t **stack, unsigned int line_num)
 {
-    stack_t *tmp;
+	stack_t *tmp;
 
-    (void)line_num;
-    if (stack == NULL)
-        exit(EXIT_FAILURE);
+	(void)line_num;
+	if (stack == NULL)
+		exit(EXIT_FAILURE);
 
-    tmp = *stack;
-    while (tmp != NULL)
-    {
-        printf("%d\n", tmp->n);
-        tmp = tmp->next;
-    }
+	tmp = *stack;
+	printf("+++++++++++++++++++++\n");
+	while (tmp != NULL)
+	{
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
+	}
+	printf("+++++++++++++++++++++\n");
 }
 /**
  * print_top - prints the top of the stack
@@ -51,11 +53,11 @@ void print_stack(stack_t **stack, unsigned int line_num)
  */
 void print_top(stack_t **stack, unsigned int line_num)
 {
-    (void)line_num;
-    if (stack == NULL || *stack == NULL)
-        print_more_err(5);
+	(void)line_num;
+	if (stack == NULL || *stack == NULL)
+		print_more_err(5);
 
-    printf("%d\n", (*stack)->n);
+	printf("%d\n", (*stack)->n);
 }
 /**
  * pop_stack - removes the top of the stack
@@ -64,18 +66,18 @@ void print_top(stack_t **stack, unsigned int line_num)
  */
 void pop_stack(stack_t **stack, unsigned int line_num)
 {
-    stack_t *tmp;
+	stack_t *tmp;
 
-    (void)line_num;
+	(void)line_num;
 
-    if (stack == NULL || *stack == NULL)
-        print_more_err(6);
+	if (stack == NULL || *stack == NULL)
+		print_more_err(6);
 
-    tmp = *stack;
-    *stack = (*stack)->next;
-    if (*stack != NULL)
-        (*stack)->prev = NULL;
-    free(tmp);
+	tmp = *stack;
+	*stack = (*stack)->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
+	free(tmp);
 }
 /**
  * swap_stack - swaps the top two elements of the stack
@@ -84,18 +86,18 @@ void pop_stack(stack_t **stack, unsigned int line_num)
  */
 void swap_stack(stack_t **stack, unsigned int line_num)
 {
-    stack_t *tmp;
+	stack_t *tmp;
 
-    (void)line_num;
-    if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-        print_more_err(7, line_num, "swap");
+	(void)line_num;
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		print_more_err(7, line_num, "swap");
 
-    tmp = *stack;
-    *stack = (*stack)->next;
-    (*stack)->prev = NULL;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
 
-    tmp->next = (*stack)->next;
-    tmp->prev = *stack;
+	tmp->next = (*stack)->next;
+	tmp->prev = *stack;
 
-    (*stack)->next = tmp;
+	(*stack)->next = tmp;
 }

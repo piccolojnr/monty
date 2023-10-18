@@ -10,25 +10,25 @@ stack_t *head;
  */
 int main(int argc, char *argv[])
 {
-    FILE *fd;
-    char *file_name;
+	FILE *fd;
+	char *file_name;
 
-    if (argc != 2)
-    {
-        fprintf(stderr, "USAGE: monty file\n");
-        exit(EXIT_FAILURE);
-    }
-    file_name = argv[1];
-    fd = fopen(file_name, "r");
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	file_name = argv[1];
+	fd = fopen(file_name, "r");
 
-    if (file_name == NULL || fd == NULL)
-        print_err(1, file_name);
+	if (file_name == NULL || fd == NULL)
+		print_err(1, file_name);
 
-    read_file(fd);
+	read_file(fd);
 
-    fclose(fd);
+	fclose(fd);
 
-    printf("executed successfully\n");
-    free_stack();
-    return (0);
+	printf("executed successfully\n");
+	free_stack();
+	return (0);
 }

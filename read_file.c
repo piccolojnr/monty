@@ -5,16 +5,16 @@
  */
 void read_file(FILE *fd)
 {
-    int line_num, format = 0;
-    char *buf = NULL;
-    size_t len = 0;
+	int line_num, format = 0;
+	char *buf = NULL;
+	size_t len = 0;
 
-    for (line_num = 1; _getline(&buf, &len, fd) != -1; line_num++)
-    {
-        format = parse_line(buf, line_num, format);
-    }
+	for (line_num = 1; _getline(&buf, &len, fd) != -1; line_num++)
+	{
+		format = parse_line(buf, line_num, format);
+	}
 
-    free(buf);
+	free(buf);
 }
 /**
  * parse_line - parses a line for opcode and value
@@ -22,38 +22,42 @@ void read_file(FILE *fd)
  * @line_num: line number
  * @format: format specifier
  *
- * Return:
+ * Return: format specifier
  */
 int parse_line(char *buf, int line_num, int format)
 {
-    char *opcode, *value;
-    const char *delim = "\n ";
-    size_t index;
+	char *opcode, *value;
+	const char *delim = "\n ";
+	size_t index;
 
-    if (buf == NULL)
-        print_err(2);
+	if (buf == NULL)
+		print_err(2);
+	if (strlen(buf) == 0)
+		return (format);
+	opcode = strtok(buf, delim);
+	if (strcmp(opcode, "stack") == 0)
+	{
+		format = 1;
+		return (format);
+	}
+	else if (strcmp(opcode, "queue") == 0)
+	{
+		format = 0;
+		return (format);
+	}
+	index = strlen(opcode) - 1;
+	if ('0' + opcode[index] == 61)
+		opcode[index] = '\0';
+	if (opcode == NULL || opcode[0] == '\0' || opcode[0] == '#')
+		return (format);
+	value = strtok(NULL, delim);
 
-    opcode = strtok(buf, delim);
-
-    index = strlen(opcode) - 1;
-
-    if ('0' + opcode[index] == 61)
-        opcode[index] = '\0';
-
-    if (opcode == NULL || opcode[0] == '\0' || opcode[0] == '#')
-    {
-        return (format);
-    }
-
-    value = strtok(NULL, delim);
-
-    if (value)
-    {
-        index = strlen(value) - 1;
-        if ('0' + value[index] == 61)
-            value[index] = '\0';
-    }
-
-    get_func(opcode, value, line_num);
-    return (format);
+	if (value)
+	{
+		index = strlen(value) - 1;
+		if ('0' + value[index] == 61)
+			value[index] = '\0';
+	}
+	get_func(opcode, value, line_num, format);
+	return (format);
 }

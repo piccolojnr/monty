@@ -20,9 +20,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -35,14 +35,14 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 extern stack_t *head;
 
 /* func_1 */
-void get_func(char *opcode, char *value, int line_num);
+void get_func(char *opcode, char *value, int line_num, int format);
 stack_t *create_node(int n);
 int check_digit(char *value, int line_num);
 
@@ -63,6 +63,13 @@ void div_stack(stack_t **stack, unsigned int line_number);
 /* stack_func_3 */
 void mod_stack(stack_t **stack, unsigned int line_number);
 void print_char(stack_t **stack, unsigned int line_number);
+void print_str(stack_t **stack, unsigned int line_number);
+void rotl_stack(stack_t **stack, unsigned int line_number);
+void rotr_stack(stack_t **stack, unsigned int line_number);
+
+/* stack_func_4 */
+void add_node_begin(stack_t **stack);
+void add_node_end(stack_t **stack);
 
 /* getline */
 ssize_t _getline(char **line, size_t *len, FILE *stream);
