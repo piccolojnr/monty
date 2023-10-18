@@ -25,7 +25,7 @@ void get_func(char *opcode, char *value, int line_num, int format)
 	{
 		if (strcmp(opcode, opcodes[i].opcode) == 0)
 		{
-			if (strcmp(opcode, "push") == 0 && value != NULL)
+			if (strcmp(opcode, "push") == 0)
 			{
 				new_digit = check_digit(value, line_num);
 				new_node = create_node(new_digit);
@@ -59,7 +59,8 @@ int check_digit(char *value, int line_num)
 	int flag = 1;
 	int new_digit;
 
-	if (value == NULL)
+
+	if (value == NULL || value[0] == '\0' || value[0] == ' ' || !value)
 		print_err(3, line_num);
 
 	if (value[0] == '-')
