@@ -1,4 +1,6 @@
 #include "monty.h"
+/* Global variable to track the current mode (stack or queue) */
+int mode = STACK; /* Initialize as stack */
 
 /**
  * main - Entry point

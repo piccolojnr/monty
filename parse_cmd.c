@@ -1,5 +1,4 @@
 #include "monty.h"
-stack_t *head;
 /**
  * process_monty_commands - Process Monty bytecode commands
  * @file: A pointer to the input bytecode file.
@@ -9,6 +8,7 @@ void process_monty_commands(FILE *file)
 	char *line = NULL, *opcode = NULL;
 	size_t len = 0;
 	unsigned int line_number = 0;
+	stack_t *stack;
 
 	while (getline(&line, &len, file) != -1)
 	{
@@ -19,11 +19,11 @@ void process_monty_commands(FILE *file)
 		if (opcode == NULL || *opcode == '#')
 			continue; /* Ignore empty lines and comments */
 
-		get_function(&head, opcode, line_number);
+		get_function(&stack, opcode, line_number);
 	}
 
 	free(line);
-	free_stack();
+	free_stack(stack);
 }
 
 /**
@@ -34,20 +34,35 @@ void process_monty_commands(FILE *file)
  */
 void get_function(stack_t **stack, char *opcode, unsigned int line_number)
 {
-	int i;
+	int i, found = 0;
 	instruction_t op_funcs[] = {
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-		{NULL, NULL}
-	};
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{"sub", sub},
+		{"mul", mul_op},
+		{"div", div_op},
+		{"mod", mod_op},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr},
+		{"stack", stack_op},
+		{"queue", queue_op},
+		{NULL, NULL}};
 
 	for (i = 0; op_funcs[i].opcode; i++)
 	{
 		if (strcmp(opcode, op_funcs[i].opcode) == 0)
 		{
+			found = 1;
 			op_funcs[i].f(stack, line_number);
 		}
 	}
+	if (found == 0)
+		p_err(stack, 4, line_number, opcode);
 }
