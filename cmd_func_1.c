@@ -16,16 +16,10 @@ void push(stack_t **stack, unsigned int line_number)
 
 	new_node = create_node(stack, atoi(arg));
 
-	if (*stack == NULL)
-	{
-		*stack = new_node;
-	}
+	if (get_mode() == STACK)
+		add_node_stack(stack, new_node);
 	else
-	{
-		new_node->next = *stack;
-		(*stack)->prev = new_node;
-		*stack = new_node;
-	}
+		add_node_queue(stack, new_node);
 }
 
 /**

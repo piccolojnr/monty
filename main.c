@@ -1,4 +1,5 @@
 #include "monty.h"
+int mode = 0;
 
 /**
  * main - Entry point
