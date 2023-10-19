@@ -1,6 +1,2 @@
-.viscode
+.vscode
 uncrustify.cfg
-
-CMakeLists.txt
-
-build
