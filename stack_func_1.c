@@ -1,17 +1,18 @@
 #include "monty.h"
 /**
  * create_node - creates a new node
+ * @stack: stack
  * @n: value to add to node
  *
  * Return: node
  */
-stack_t *create_node(int n)
+stack_t *create_node(stack_t **stack, int n)
 {
 	stack_t *new_node;
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
-		p_err(2);
+		p_err(stack, 2);
 
 	new_node->n = n;
 	new_node->next = NULL;
@@ -20,8 +21,9 @@ stack_t *create_node(int n)
 }
 /**
  * free_stack - Frees a stack_t stack.
+ * @head: pointer to head of stack
  */
-void free_stack(void)
+void free_stack(stack_t *head)
 {
 	stack_t *tmp;
 

@@ -12,9 +12,9 @@ void push(stack_t **stack, unsigned int line_number)
 
 	arg = strtok(NULL, " \t\n\r");
 	if (!arg || !is_number(arg))
-		p_err(3, line_number);
+		p_err(stack, 3, line_number);
 
-	new_node = create_node(atoi(arg));
+	new_node = create_node(stack, atoi(arg));
 
 	if (*stack == NULL)
 	{
@@ -53,7 +53,7 @@ void pall(stack_t **stack, unsigned int line_number)
 void pint(stack_t **stack, unsigned int line_number)
 {
 	if (!stack || !(*stack))
-		p_more_err(5, line_number);
+		p_more_err(stack, 5, line_number);
 
 	printf("%d\n", (*stack)->n);
 }
@@ -67,7 +67,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!stack || !(*stack))
-		p_more_err(6, line_number);
+		p_more_err(stack, 6, line_number);
 
 	tmp = *stack;
 	*stack = (*stack)->next;

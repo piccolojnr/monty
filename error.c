@@ -1,6 +1,7 @@
 #include "monty.h"
 /**
  * p_err - prints error messages
+ * @stack: stack
  * @op_code: opcode
  * (0) USAGE: monty file
  * (1) ERROR: Can't open file %s
@@ -8,7 +9,7 @@
  * (3) ERROR: L%d: usage: push integer
  * (4) ERROR: L%d: unknown instruction %s
  */
-void p_err(int op_code, ...)
+void p_err(stack_t **stack, int op_code, ...)
 {
 	va_list args;
 	int l_num;
@@ -40,18 +41,19 @@ void p_err(int op_code, ...)
 	}
 
 	va_end(args);
-	free_stack();
+	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }
 /**
  * p_more_err - prints error messages
+ * @stack: stack
  * @op_code: error op_code
  * (5) CAN'T PINT, STACK EMPTY
  * (6) CAN'T POP AN EMPTY STACK
  * (7) PUSH OPERATION USAGE
  * (8) DIVISION BY ZERO
  */
-void p_more_err(int op_code, ...)
+void p_more_err(stack_t **stack, int op_code, ...)
 {
 	va_list args;
 	int l_num;
@@ -80,16 +82,17 @@ void p_more_err(int op_code, ...)
 	}
 
 	va_end(args);
-	free_stack();
+	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }
 /**
  * p_more_more_err - prints error messages
+ * @stack: stack
  * @op_code: error op_code
  * (9) CAN'T PCHAR, VALUE OUT OF RANGE
  * (10) CAN'T PCHAR, STACK EMPTY
  */
-void p_more_more_err(int op_code, ...)
+void p_more_more_err(stack_t **stack, int op_code, ...)
 {
 	va_list args;
 	int l_num;
@@ -110,6 +113,6 @@ void p_more_more_err(int op_code, ...)
 	}
 
 	va_end(args);
-	free_stack();
+	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }

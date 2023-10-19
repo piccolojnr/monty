@@ -3,6 +3,9 @@
 
 #define _GNU_SOURCE
 
+#define STACK 0
+#define QUEUE 1
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -25,7 +28,6 @@ typedef struct stack_s
 	struct stack_s *prev;
 	struct stack_s *next;
 } stack_t;
-extern stack_t *head;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -51,15 +53,15 @@ void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 
 /* stack functions */
-stack_t *create_node(int n);
-void free_stack(void);
+stack_t *create_node(stack_t **stack, int n);
+void free_stack(stack_t *head);
 
 /* utilities */
 int is_number(char *str);
 
 /* error handling */
-void p_err(int op_code, ...);
-void p_more_err(int op_code, ...);
-void p_more_more_err(int op_code, ...);
+void p_err(stack_t **stack, int op_code, ...);
+void p_more_err(stack_t **stack, int op_code, ...);
+void p_more_more_err(stack_t **stack, int op_code, ...);
 
 #endif /* MONTY_H */
