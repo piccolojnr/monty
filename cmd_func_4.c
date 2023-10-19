@@ -7,19 +7,21 @@
  */
 void add_node_queue(stack_t **stack, stack_t *new_node)
 {
-    /* In queue mode, insert at the end (LIFO behavior) */
-    if (*stack)
-    {
-        stack_t *current = *stack;
-        while (current->next)
-            current = current->next;
-        current->next = new_node;
-        new_node->prev = current;
-    }
-    else
-    {
-        *stack = new_node;
-    }
+	stack_t *current;
+
+	/* In queue mode, insert at the end (LIFO behavior) */
+	if (*stack)
+	{
+		current = *stack;
+		while (current->next)
+			current = current->next;
+		current->next = new_node;
+		new_node->prev = current;
+	}
+	else
+	{
+		*stack = new_node;
+	}
 }
 /**
  * add_node_stack - Add a node to a stack.
@@ -28,11 +30,11 @@ void add_node_queue(stack_t **stack, stack_t *new_node)
  */
 void add_node_stack(stack_t **stack, stack_t *new_node)
 {
-    /* In stack mode, insert at the beginning (FIFO behavior) */
-    new_node->next = *stack;
-    if (*stack)
-        (*stack)->prev = new_node;
-    *stack = new_node;
+	/* In stack mode, insert at the beginning (FIFO behavior) */
+	new_node->next = *stack;
+	if (*stack)
+		(*stack)->prev = new_node;
+	*stack = new_node;
 }
 
 /**
@@ -42,9 +44,9 @@ void add_node_stack(stack_t **stack, stack_t *new_node)
  */
 void stack_op(stack_t **stack, unsigned int line_number)
 {
-    (void)stack;
-    (void)line_number;
-    mode = STACK;
+	(void)stack;
+	(void)line_number;
+	mode = STACK;
 }
 
 /**
@@ -54,9 +56,9 @@ void stack_op(stack_t **stack, unsigned int line_number)
  */
 void queue_op(stack_t **stack, unsigned int line_number)
 {
-    (void)stack;
-    (void)line_number;
-    mode = QUEUE;
+	(void)stack;
+	(void)line_number;
+	mode = QUEUE;
 }
 
 /**
@@ -65,5 +67,5 @@ void queue_op(stack_t **stack, unsigned int line_number)
  */
 int get_mode(void)
 {
-    return mode;
+	return (mode);
 }

@@ -21,7 +21,7 @@ stack_t *create_node(stack_t **stack, int n)
 }
 /**
  * free_stack - Frees a stack_t stack.
- * @head: pointer to head of stack
+ * @stack: pointer to head of stack
  */
 void free_stack(stack_t *stack)
 {

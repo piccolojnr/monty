@@ -24,8 +24,8 @@ void push(stack_t **stack, unsigned int line_number)
 
 /**
  * pall - Print all values on the stack.
- * @stack: A pointer to the stack.
- * @line_number: The current line number.
+ * @stack: A pointer to the stack
+ * @line_number: The current line number
  */
 void pall(stack_t **stack, unsigned int line_number)
 {

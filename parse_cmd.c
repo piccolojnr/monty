@@ -53,7 +53,8 @@ void get_function(stack_t **stack, char *opcode, unsigned int line_number)
 		{"rotr", rotr},
 		{"stack", stack_op},
 		{"queue", queue_op},
-		{NULL, NULL}};
+		{NULL, NULL}
+	};
 
 	for (i = 0; op_funcs[i].opcode; i++)
 	{
