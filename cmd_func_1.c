@@ -45,3 +45,33 @@ void pall(stack_t **stack, unsigned int line_number)
 		current = current->next;
 	}
 }
+/**
+ * pint - Print the value at the top of the stack.
+ * @stack: A pointer to the stack.
+ * @line_number: The current line number.
+ */
+void pint(stack_t **stack, unsigned int line_number)
+{
+	if (!stack || !(*stack))
+		p_more_err(5, line_number);
+
+	printf("%d\n", (*stack)->n);
+}
+/**
+ * pop - Remove the top element from the stack
+ * @stack: A pointer to the stack.
+ * @line_number: The line number of the opcode.
+ */
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (!stack || !(*stack))
+		p_more_err(6, line_number);
+
+	tmp = *stack;
+	*stack = (*stack)->next;
+	if (*stack)
+		(*stack)->prev = NULL;
+	free(tmp);
+}
