@@ -8,6 +8,7 @@ void process_monty_commands(FILE *file)
 	char *line = NULL, *opcode = NULL;
 	size_t len = 0;
 	unsigned int line_number = 0;
+
 	stack_t *head = NULL;
 
 	while (getline(&line, &len, file) != -1)
@@ -40,6 +41,17 @@ void get_function(stack_t **stack, char *opcode, unsigned int line_number)
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{"sub", sub},
+		{"mul", mul_op},
+		{"div", div_op},
+		{"mod", mod_op},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}};
 
 	for (i = 0; op_funcs[i].opcode; i++)

@@ -75,3 +75,24 @@ void pop(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = NULL;
 	free(tmp);
 }
+/**
+ * swap - Swap the top two elements of the stack.
+ * @stack: A pointer to the stack.
+ * @line_number: The line number of the opcode.
+ */
+void swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (!stack || !(*stack) || !(*stack)->next)
+		p_more_err(stack, 7, line_number, "swap");
+
+	tmp = (*stack)->next;
+	(*stack)->next = tmp->next;
+	if (tmp->next)
+		tmp->next->prev = *stack;
+	tmp->prev = NULL;
+	tmp->next = *stack;
+	(*stack)->prev = tmp;
+	*stack = tmp;
+}
