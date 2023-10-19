@@ -10,38 +10,38 @@
  */
 void p_err(int op_code, ...)
 {
-    va_list args;
-    int l_num;
-    char *op;
+	va_list args;
+	int l_num;
+	char *op;
 
-    va_start(args, op_code);
+	va_start(args, op_code);
 
-    switch (op_code)
-    {
-    case 0:
-        fprintf(stderr, "USAGE: monty file\n");
-        break;
-    case 1:
-        fprintf(stderr, "Error: Can't open file %s\n", va_arg(args, char *));
-        break;
-    case 2:
-        fprintf(stderr, "Error: malloc failed\n");
-        break;
-    case 3:
-        fprintf(stderr, "L%d: usage: push integer\n", va_arg(args, int));
-        break;
-    case 4:
-        l_num = va_arg(args, int);
-        op = va_arg(args, char *);
-        fprintf(stderr, "L%d: unknown instruction %s\n", l_num, op);
-        break;
-    default:
-        break;
-    }
+	switch (op_code)
+	{
+	case 0:
+		fprintf(stderr, "USAGE: monty file\n");
+		break;
+	case 1:
+		fprintf(stderr, "Error: Can't open file %s\n", va_arg(args, char *));
+		break;
+	case 2:
+		fprintf(stderr, "Error: malloc failed\n");
+		break;
+	case 3:
+		fprintf(stderr, "L%d: usage: push integer\n", va_arg(args, int));
+		break;
+	case 4:
+		l_num = va_arg(args, int);
+		op = va_arg(args, char *);
+		fprintf(stderr, "L%d: unknown instruction %s\n", l_num, op);
+		break;
+	default:
+		break;
+	}
 
-    va_end(args);
-    free_stack();
-    exit(EXIT_FAILURE);
+	va_end(args);
+	free_stack();
+	exit(EXIT_FAILURE);
 }
 /**
  * p_more_err - prints error messages
@@ -53,35 +53,35 @@ void p_err(int op_code, ...)
  */
 void p_more_err(int op_code, ...)
 {
-    va_list args;
-    int l_num;
-    char *op;
+	va_list args;
+	int l_num;
+	char *op;
 
-    va_start(args, op_code);
+	va_start(args, op_code);
 
-    switch (op_code)
-    {
-    case 5:
-        fprintf(stderr, "L%d: can't pint, stack empty\n", va_arg(args, int));
-        break;
-    case 6:
-        fprintf(stderr, "L%d: can't pop an empty stack\n", va_arg(args, int));
-        break;
-    case 7:
-        l_num = va_arg(args, unsigned int);
-        op = va_arg(args, char *);
-        fprintf(stderr, "L%d: can't %s, stack too short\n", l_num, op);
-        break;
-    case 8:
-        fprintf(stderr, "L%d: division by zero\n", va_arg(args, unsigned int));
-        break;
-    default:
-        break;
-    }
+	switch (op_code)
+	{
+	case 5:
+		fprintf(stderr, "L%d: can't pint, stack empty\n", va_arg(args, int));
+		break;
+	case 6:
+		fprintf(stderr, "L%d: can't pop an empty stack\n", va_arg(args, int));
+		break;
+	case 7:
+		l_num = va_arg(args, unsigned int);
+		op = va_arg(args, char *);
+		fprintf(stderr, "L%d: can't %s, stack too short\n", l_num, op);
+		break;
+	case 8:
+		fprintf(stderr, "L%d: division by zero\n", va_arg(args, unsigned int));
+		break;
+	default:
+		break;
+	}
 
-    va_end(args);
-    free_stack();
-    exit(EXIT_FAILURE);
+	va_end(args);
+	free_stack();
+	exit(EXIT_FAILURE);
 }
 /**
  * p_more_more_err - prints error messages
@@ -91,25 +91,25 @@ void p_more_err(int op_code, ...)
  */
 void p_more_more_err(int op_code, ...)
 {
-    va_list args;
-    int l_num;
+	va_list args;
+	int l_num;
 
-    va_start(args, op_code);
+	va_start(args, op_code);
 
-    l_num = va_arg(args, int);
-    switch (op_code)
-    {
-    case 9:
-        fprintf(stderr, "L%d: can't pchar, value out of range\n", l_num);
-        break;
-    case 10:
-        fprintf(stderr, "L%d: can't pchar, stack empty\n", l_num);
-        break;
-    default:
-        break;
-    }
+	l_num = va_arg(args, int);
+	switch (op_code)
+	{
+	case 9:
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", l_num);
+		break;
+	case 10:
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", l_num);
+		break;
+	default:
+		break;
+	}
 
-    va_end(args);
-    free_stack();
-    exit(EXIT_FAILURE);
+	va_end(args);
+	free_stack();
+	exit(EXIT_FAILURE);
 }
