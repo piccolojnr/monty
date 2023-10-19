@@ -34,7 +34,7 @@ void process_monty_commands(FILE *file)
  */
 void get_function(stack_t **stack, char *opcode, unsigned int line_number)
 {
-	int i;
+	int i, found = 0;
 	instruction_t op_funcs[] = {
 		{"push", push},
 		{"pall", pall},
@@ -46,7 +46,10 @@ void get_function(stack_t **stack, char *opcode, unsigned int line_number)
 	{
 		if (strcmp(opcode, op_funcs[i].opcode) == 0)
 		{
+			found = 1;
 			op_funcs[i].f(stack, line_number);
 		}
 	}
+	if (found == 0)
+		p_err(stack, 4, line_number, opcode);
 }

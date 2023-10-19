@@ -1,7 +1,7 @@
 #include "monty.h"
 /**
  * create_node - creates a new node
- * @stack: stack
+ * @stack: pointer to head of stack
  * @n: value to add to node
  *
  * Return: node
@@ -12,6 +12,7 @@ stack_t *create_node(stack_t **stack, int n)
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
+		p_err(stack, 2);
 		p_err(stack, 2);
 
 	new_node->n = n;
